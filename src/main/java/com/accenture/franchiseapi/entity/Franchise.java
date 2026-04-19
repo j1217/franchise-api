@@ -1,5 +1,6 @@
 package com.accenture.franchiseapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,5 +24,6 @@ public class Franchise {
     private String name;
 
     @OneToMany(mappedBy = "franchise", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("franchise")
     private List<Branch> branches = new ArrayList<>();
 }

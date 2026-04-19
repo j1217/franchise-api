@@ -1,5 +1,6 @@
 package com.accenture.franchiseapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,5 +25,6 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "branch_id", nullable = false)
+    @JsonIgnoreProperties("products")
     private Branch branch;
 }
