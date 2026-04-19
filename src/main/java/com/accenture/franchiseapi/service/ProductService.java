@@ -26,4 +26,16 @@ public class ProductService {
 
         return productRepository.save(product);
     }
+
+    public void delete(Long branchId, Long productId) {
+
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        if (!product.getBranch().getId().equals(branchId)) {
+            throw new RuntimeException("Product does not belong to branch");
+        }
+
+        productRepository.delete(product);
+    }
 }

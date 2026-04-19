@@ -21,4 +21,11 @@ public class ProductController {
                           @RequestBody Product product) {
         return productService.create(branchId, product);
     }
+
+    @DeleteMapping("/{branchId}/products/{productId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long branchId,
+                       @PathVariable Long productId) {
+        productService.delete(branchId, productId);
+    }
 }
