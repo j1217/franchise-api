@@ -34,4 +34,10 @@ public class ProductController {
                                @RequestParam Integer stock) {
         return productService.updateStock(productId, stock);
     }
+
+    @PutMapping("/{id}/name")
+    public Product updateName(@PathVariable Long id,
+                              @RequestParam String name) {
+        return productService.updateName(id, name);
+    }
 }

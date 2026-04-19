@@ -47,4 +47,14 @@ public class FranchiseService {
 
         return response;
     }
+
+    public Franchise updateName(Long id, String name) {
+
+        Franchise franchise = franchiseRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Franchise not found"));
+
+        franchise.setName(name);
+
+        return franchiseRepository.save(franchise);
+    }
 }

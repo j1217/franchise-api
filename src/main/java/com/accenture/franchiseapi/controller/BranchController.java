@@ -21,4 +21,10 @@ public class BranchController {
                          @RequestBody Branch branch) {
         return branchService.create(franchiseId, branch);
     }
+
+    @PutMapping("/branches/{id}/name")
+    public Branch updateName(@PathVariable Long id,
+                             @RequestParam String name) {
+        return branchService.updateName(id, name);
+    }
 }

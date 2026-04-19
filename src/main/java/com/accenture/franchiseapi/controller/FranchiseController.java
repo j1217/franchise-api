@@ -31,4 +31,10 @@ public class FranchiseController {
 
         return franchiseService.getTopProducts(franchiseId);
     }
+
+    @PutMapping("/{id}/name")
+    public Franchise updateName(@PathVariable Long id,
+                                @RequestParam String name) {
+        return franchiseService.updateName(id, name);
+    }
 }

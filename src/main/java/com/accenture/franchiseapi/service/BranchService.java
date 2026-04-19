@@ -26,4 +26,14 @@ public class BranchService {
 
         return branchRepository.save(branch);
     }
+
+    public Branch updateName(Long id, String name) {
+
+        Branch branch = branchRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Branch not found"));
+
+        branch.setName(name);
+
+        return branchRepository.save(branch);
+    }
 }

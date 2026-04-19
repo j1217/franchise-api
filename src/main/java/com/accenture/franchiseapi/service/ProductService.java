@@ -48,4 +48,14 @@ public class ProductService {
 
         return productRepository.save(product);
     }
+
+    public Product updateName(Long id, String name) {
+
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        product.setName(name);
+
+        return productRepository.save(product);
+    }
 }
