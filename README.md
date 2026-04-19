@@ -1,6 +1,6 @@
 # 🚀 Franchise API
 
-Prueba técnica backend desarrollada en Spring Boot para la administración de franquicias, sucursales y productos, aplicando buenas prácticas de desarrollo, arquitectura por capas y despliegue con Docker.
+Prueba técnica backend desarrollada en Spring Boot para la administración de franquicias, sucursales y productos, aplicando buenas prácticas de desarrollo, enfoque arquitectónico limpio, pruebas automatizadas y despliegue contenerizado.
 
 ---
 
@@ -21,6 +21,8 @@ La solución fue diseñada priorizando:
 - Mantenibilidad
 - Buenas prácticas REST
 - Separación de responsabilidades
+- Facilidad de despliegue
+- Calidad mediante pruebas automatizadas
 
 ---
 
@@ -32,8 +34,11 @@ La solución fue diseñada priorizando:
 - Hibernate
 - MySQL 8
 - Maven
+- JUnit 5
+- Mockito
 - Swagger / OpenAPI
 - Docker
+- Docker Compose
 - Git / GitHub
 
 ---
@@ -51,10 +56,73 @@ dto
 ## Responsabilidades
 
 - controller: Exposición de endpoints REST
-- service: Lógica de negocio
-- repository: Acceso a base de datos
-- entity: Modelado JPA
-- dto: Respuestas personalizadas
+- service: Casos de uso y lógica de negocio
+- repository: Acceso a datos y persistencia
+- entity: Modelo de dominio relacional
+- dto: Objetos de transferencia de datos
+
+---
+
+# 🧩 Enfoque Clean Architecture
+
+Aunque se desarrolló una solución pragmática para la prueba técnica, la estructura fue organizada siguiendo principios de Clean Architecture:
+
+- Separación clara entre capa de entrada (controllers) y lógica de negocio (services)
+- Persistencia desacoplada mediante interfaces repository
+- Dominio representado por entidades independientes
+- DTOs para evitar exponer internamente el modelo de datos
+- Código preparado para evolucionar hacia puertos y adaptadores si el proyecto crece
+
+Esto facilita:
+
+- Mantenimiento
+- Escalabilidad
+- Testabilidad
+- Bajo acoplamiento
+
+---
+
+# ⚡ Programación Reactiva
+
+Como parte de los criterios de evaluación, se aplicó programación funcional/reactiva en operaciones de procesamiento de datos mediante Java Streams.
+
+Ejemplo implementado:
+
+- Búsqueda del producto con mayor stock por sucursal usando stream(), max() y Comparator
+
+Esto permite:
+
+- Código declarativo
+- Mejor legibilidad
+- Menor complejidad imperativa
+- Fácil evolución hacia un stack totalmente reactivo (Spring WebFlux / Reactor) si el proyecto lo requiere
+
+---
+
+# 🧪 Pruebas Unitarias
+
+Se implementaron pruebas unitarias con JUnit 5 y Mockito sobre la lógica principal del sistema.
+
+Cobertura aplicada a:
+
+- Creación de franquicias
+- Actualización de stock de productos
+- Reporte de producto con mayor stock por sucursal
+
+Ubicación:
+
+src/test/java/com/accenture/franchiseapi/service/
+
+Ejecución:
+
+mvn test
+
+Beneficios:
+
+- Validación automática del comportamiento esperado
+- Prevención de regresiones
+- Mayor confiabilidad del código
+- Base sólida para integración continua
 
 ---
 
@@ -70,6 +138,28 @@ Archivos:
 application.properties  
 application-dev.properties  
 application-docker.properties
+
+---
+
+# 🏗️ Infrastructure as Code (IaC)
+
+Se incorporó enfoque Infrastructure as Code mediante Docker Compose, definiendo la infraestructura necesaria para ejecutar la solución de forma declarativa.
+
+Archivo principal:
+
+docker-compose.yml
+
+Servicios definidos:
+
+- API Spring Boot
+- Base de datos MySQL
+
+Ventajas:
+
+- Reproducibilidad del entorno
+- Configuración estandarizada
+- Inicio rápido con un solo comando
+- Menor dependencia de configuraciones manuales
 
 ---
 
@@ -209,7 +299,9 @@ Respuesta:
 - Configuración por ambientes
 - Swagger UI
 - DTOs personalizados
-- Arquitectura limpia por capas
+- Pruebas unitarias
+- Clean Architecture aplicada de forma pragmática
+- Programación funcional con Streams
 - Historial Git por fases
 - Relaciones JPA correctamente modeladas
 
@@ -232,6 +324,10 @@ Framework robusto, estándar empresarial y alta productividad.
 
 Permite levantar la solución completa con un solo comando.
 
+## Testing
+
+Se priorizó validar la lógica crítica mediante pruebas unitarias desacopladas.
+
 ---
 
 # 👨‍💻 Autor
@@ -242,4 +338,4 @@ Juan Felipe Acevedo Zapata
 
 # 📬 Estado Final
 
-Proyecto funcional, dockerizado y listo para evaluación técnica.
+Proyecto funcional, probado, dockerizado y listo para evaluación técnica.
