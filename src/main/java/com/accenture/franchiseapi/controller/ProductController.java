@@ -28,4 +28,10 @@ public class ProductController {
                        @PathVariable Long productId) {
         productService.delete(branchId, productId);
     }
+
+    @PutMapping("/{productId}/stock")
+    public Product updateStock(@PathVariable Long productId,
+                               @RequestParam Integer stock) {
+        return productService.updateStock(productId, stock);
+    }
 }

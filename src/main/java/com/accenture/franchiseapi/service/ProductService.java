@@ -38,4 +38,14 @@ public class ProductService {
 
         productRepository.delete(product);
     }
+
+    public Product updateStock(Long productId, Integer stock) {
+
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
+
+        product.setStock(stock);
+
+        return productRepository.save(product);
+    }
 }
